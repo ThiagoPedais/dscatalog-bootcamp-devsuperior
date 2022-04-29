@@ -1,24 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import './style.scss'
 
 export default function index() {
   return (
     <nav className="row bg-primary main-nav">
         <div className="col-2">
-            <a href="link" className="nav-logo-text">
+            <Link to="/" className="nav-logo-text">
                 <h4>DS Catalog</h4>
-            </a>
+            </Link>
         </div>
         <div className="col-6 offset-2">
             <ul className="main-menu">
                 <li>
-                    <a href="home" className="active">Home</a>
+                    <NavLink to="/" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Home</NavLink>
                 </li>
                 <li>
-                    <a href="catalogo">Catálogo</a>
+                    <NavLink to="catalog" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Catálogo</NavLink>
                 </li>
                 <li>
-                    <a href="admin">Admin</a>
+                    <NavLink to="admin" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Admin</NavLink>
                 </li>
             </ul>
         </div>
