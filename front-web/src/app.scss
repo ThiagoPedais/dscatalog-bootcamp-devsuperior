@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 * {
+
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -15,12 +16,11 @@ ul {
   padding-left: 0;
 }
 
-a {
-  &:hover {
+a, a:hover {
     text-decoration: none;
     color: unset;
   }
-}
+
 .card-base {
   background: #FFF;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);

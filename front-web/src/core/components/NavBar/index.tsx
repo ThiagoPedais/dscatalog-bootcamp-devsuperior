@@ -5,14 +5,14 @@ import 'bootstrap/js/src/collapse.js'
 
 export default function index() {
     return (
-        <nav className="navbar navbar-expand-md navbar-dark row bg-primary main-nav">
-            <div className="col-2">
+        <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
+            <div className=" col-6 container-fluid">
                 <Link to="/" className="nav-logo-text">
                     <h4>DS Catalog</h4>
                 </Link>
 
                 <button
-                    className="navbar-toggler"
+                    className="navbar-toggler iconNav"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#dscatalog-navbar"
@@ -24,16 +24,17 @@ export default function index() {
                 </button>
 
             </div>
-            <div className="col-6 offset-2 collapse navbar-collapse" id="dscatalog-navbar">
-                <ul className="main-menu">
+
+            <div className="collapse navbar-collapse" id="dscatalog-navbar">
+                <ul className="navbar-nav offset-md-2 main-menu">
                     <li>
                         <NavLink to="/" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="catalog" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Catálogo</NavLink>
+                        <NavLink to="/products" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Catálogo</NavLink>
                     </li>
                     <li>
-                        <NavLink to="admin" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Admin</NavLink>
+                        <NavLink to="/admin" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Admin</NavLink>
                     </li>
                 </ul>
             </div>

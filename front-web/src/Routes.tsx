@@ -2,7 +2,7 @@ import React from 'react';
 import {
     BrowserRouter,
     Routes,
-    Route,    
+    Route,
 } from 'react-router-dom';
 import NavBar from './core/components/NavBar';
 import Admin from './pages/Admin';
@@ -12,10 +12,10 @@ import Home from './pages/Home';
 export default function RoutesSystem() {
     return (
         <BrowserRouter>
-        <NavBar/>
-            <Routes>                
+            <NavBar />
+            <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/catalog" element={<Catalog />} />
+                <Route path="/products" element={<Catalog />} />
                 <Route path="/admin" element={<Admin />} />
             </Routes>
         </BrowserRouter>

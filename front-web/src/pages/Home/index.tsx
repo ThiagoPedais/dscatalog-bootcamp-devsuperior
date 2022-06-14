@@ -7,19 +7,25 @@ import './style.scss';
 
 
 export default function index() {
-  return (
+  return (    
     <div className="home-container">
-      <div className="row home-content">
-        <div className="col-6 home-text">
-          <h1 className="text-title">Conheça o melhor <br /> catálogo de produtos</h1>
-          <p className="text-subtitle">Ajudaremos você a encontrar os melhores <br /> produtos disponíveis no mercado</p>
-          <Link to="/catalog">
+      <div className="base-card home-card">
+        <div className="home-content-container">
+          <div>
+            <h1>Conheça o melhor catálogo de produtos</h1>
+            <p>
+              Ajudaremos você a encontrar os melhores produtos disponíveis no
+              mercado.
+            </p>
+          </div>
+          <div>
+            <Link to="/products">
             <Button text="inicie agora a sua busca" />
-          </Link>
+            </Link>
+          </div>
         </div>
-
-        <div className="col-6">
-          <MainImage className="main-image" />
+        <div className="home-image-container">
+          <MainImage />
         </div>
       </div>
     </div>
