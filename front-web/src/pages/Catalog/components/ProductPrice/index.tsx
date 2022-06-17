@@ -1,7 +1,7 @@
 import './style.scss';
 
 type Props = {
-    price: String
+    price: number
 }
 
 const ProductPrice = ({price } : Props) => {

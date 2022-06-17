@@ -13,7 +13,7 @@
 }
 
 .product-name {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 25px;
     letter-spacing: 0.015em;
 }
@@ -31,14 +31,8 @@
 
 }
 
-.product-price {
-    font-size: 32px;
-    line-height: 44px;
-    letter-spacing: -0.015em;
-    color: #407BFF;
-    margin-left: 10px;
-
-    .price-after-comma{
-        font-size: 20px;
-    }
+.card-top-container img {
+    width: 158px;
+    height: 158px;
 }
+
