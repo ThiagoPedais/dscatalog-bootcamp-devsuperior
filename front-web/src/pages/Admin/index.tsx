@@ -1,7 +1,17 @@
-import React from 'react'
+import Navbar from './Navbar';
+import './style.scss';
 
-export default function index() {
+
+
+const Admin = () => {
   return (
-    <div>index</div>
+    <section className="admin-container">
+      <Navbar />
+      <div className="admin-content">
+        <h1>Conteudo</h1>
+      </div>
+    </section>
   )
 }
+
+export default Admin;
