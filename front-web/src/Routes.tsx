@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import {
     BrowserRouter,
     Routes,
@@ -16,9 +17,14 @@ export default function RoutesSystem() {
             <NavBar />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/products" element={<Catalog />} />
-                <Route path="/products/:productId" element={<ProductDetails />} />
-                <Route path="/admin" element={<Admin />} />
+                <Route path="/products" element={<Catalog />} >
+                    <Route path=":productId" element={<ProductDetails />} />
+                </Route>
+                <Route path="/admin/" element={<Navigate  to="/admin/products" replace={true} />} /> 
+
+                <Route path="/admin/*" element={<Admin />} >
+
+                </Route>
             </Routes>
         </BrowserRouter>
     )

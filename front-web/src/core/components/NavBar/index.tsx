@@ -6,7 +6,7 @@ import 'bootstrap/js/src/collapse.js'
 export default function index() {
     return (
         <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
-            <div className=" col-6 container-fluid">
+            <div className="container-fluid">
                 <Link to="/" className="nav-logo-text">
                     <h4>DS Catalog</h4>
                 </Link>

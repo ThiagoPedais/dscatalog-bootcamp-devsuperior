@@ -1,3 +1,4 @@
+import { Route, Routes } from 'react-router-dom';
 import Navbar from './Navbar';
 import './style.scss';
 
@@ -8,7 +9,15 @@ const Admin = () => {
     <section className="admin-container">
       <Navbar />
       <div className="admin-content">
-        <h1>Conteudo</h1>
+        <Routes>
+          <Route path="/admin/products" >
+           
+          </Route>
+          <Route path="/admin/categories">
+          </Route>
+          <Route path="/admin/users">
+          </Route>
+        </Routes>
       </div>
     </section>
   )
