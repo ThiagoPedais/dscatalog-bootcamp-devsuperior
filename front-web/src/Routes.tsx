@@ -22,8 +22,8 @@ export default function RoutesSystem() {
                 <Route path="/products" element={<Catalog />} />
                 <Route path="/products/:productId" element={<ProductDetails />} />
 
-                <Route path="/admin/auth/" element={<Navigate to="/admin/auth/login" replace={true} />} />
-                <Route path="/admin/auth/*" element={<Auth />} />
+                <Route path="/admin/auth/" element={<Navigate to="/admin/auth/login" replace={true} />} ></Route>
+                <Route path="/admin/auth/*" element={<Auth />} ></Route>
 
                 <Route path="/admin/" element={<Navigate to="/admin/products" replace={true} />} />
                 <Route path="/admin/*" element={<Admin />} />
