@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import ButtonIcon from '../../../../core/components/Button';
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import './style.scss';
 import { requestBackendlogin } from '../../../../util/requests';
 
 const Login = () => {
+
+    const [hasError, setHasError] = useState(false);
 
     type FormData = {
         username: string,
@@ -15,18 +17,25 @@ const Login = () => {
 
     const onSubmit = (formData: FormData) => {
         requestBackendlogin(formData)
-        .then( response => {
-            console.log('SUCESSO!! ', response);
-        })
-        .catch( error => {
-            console.log("ERROR ", error)
-        } )
-        
+            .then(response => {
+                setHasError(false)
+                console.log('SUCESSO!! ', response);
+            })
+            .catch(error => {
+                setHasError(true)
+                console.log("ERROR ", error)
+            })
+
     };
 
     return (
         <div className="card-base login-card">
             <h1>LOGIN</h1>
+            {hasError &&
+                <div className="alert alert-danger">
+                    Erro ao tentar efetuar o login :(
+                </div>
+            }
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                     <input
