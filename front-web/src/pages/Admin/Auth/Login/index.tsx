@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import ButtonIcon from '../../../../core/components/Button';
-import React, { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import './style.scss';
-import { requestBackendlogin } from '../../../../util/requests';
+import { getAuthData, requestBackendlogin, saveAuthData } from '../../../../util/requests';
 
 const Login = () => {
 
@@ -18,6 +18,10 @@ const Login = () => {
     const onSubmit = (formData: FormData) => {
         requestBackendlogin(formData)
             .then(response => {
+                saveAuthData(response.data);
+                const token = getAuthData().access_token;
+                console.log("Token gerado: " + token)
+
                 setHasError(false)
                 console.log('SUCESSO!! ', response);
             })
@@ -47,7 +51,7 @@ const Login = () => {
                             }
                         })}
                         type="text"
-                        className = {`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
+                        className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
                         placeholder="Email"
                         name="username"
                     />
@@ -59,7 +63,7 @@ const Login = () => {
                             required: 'Campo obrigatório'
                         })}
                         type="password"
-                        className = {`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
+                        className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
                         placeholder="Password"
                         name="password"
                     />
