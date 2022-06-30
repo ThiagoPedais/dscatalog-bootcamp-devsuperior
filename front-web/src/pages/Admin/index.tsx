@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './Navbar';
 import './style.scss';
+import Users from './User';
 
 
 
@@ -10,12 +11,12 @@ const Admin = () => {
       <Navbar />
       <div className="admin-content">
         <Routes>
-          <Route path="/admin/products" >
+          <Route path="products" element={<h1>Product CRUD</h1>}>
            
           </Route>
-          <Route path="/admin/categories">
+          <Route path="categories" element={<h1>Category CRUD</h1>}>
           </Route>
-          <Route path="/admin/users">
+          <Route path="users" element={<Users />}>
           </Route>
         </Routes>
       </div>
