@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ButtonIcon from '../../../../core/components/Button';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,8 @@ const Login = () => {
     };
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
+    const navigate = useNavigate();
+
     const onSubmit = (formData: FormData) => {
         requestBackendlogin(formData)
             .then(response => {
@@ -24,6 +26,7 @@ const Login = () => {
 
                 setHasError(false)
                 console.log('SUCESSO!! ', response);
+                navigate('/admin')
             })
             .catch(error => {
                 setHasError(true)
