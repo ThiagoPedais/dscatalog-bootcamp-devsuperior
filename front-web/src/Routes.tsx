@@ -1,7 +1,9 @@
 import React from 'react';
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+
 import { Navigate } from 'react-router-dom';
 import {
-    BrowserRouter,
+    Router,
     Routes,
     Route,
 } from 'react-router-dom';
@@ -11,10 +13,11 @@ import Auth from './pages/Admin/Auth';
 import Catalog from './pages/Catalog';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
+import history from './util/history';
 
 export default function RoutesSystem() {
     return (
-        <BrowserRouter>
+        <HistoryRouter history={history}>
             <NavBar />
             <Routes>
 
@@ -29,6 +32,6 @@ export default function RoutesSystem() {
                 <Route path="/admin/*" element={<Admin />} />
 
             </Routes>
-        </BrowserRouter>
+        </HistoryRouter>
     )
 }
