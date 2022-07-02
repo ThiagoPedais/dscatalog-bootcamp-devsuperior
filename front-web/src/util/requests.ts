@@ -6,7 +6,7 @@ import history from './history';
 
 
 
-type Role = 'ROLE_OPERaTOR' | 'ROLE_ADMIN'
+type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN'
 
 type TokenData = {
     exp: number,
