@@ -1,11 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import ButtonIcon from '../../../../core/components/Button';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import './style.scss';
-import { getAuthData, requestBackendlogin, saveAuthData } from '../../../../util/requests';
+import { getAuthData, getTokenData, requestBackendlogin, saveAuthData } from '../../../../util/requests';
+import { AuthContext } from '../../../../AuthContext';
 
 const Login = () => {
+
+    const { setAuthContextData } = useContext(AuthContext);
 
     const [hasError, setHasError] = useState(false);
 
@@ -21,11 +24,11 @@ const Login = () => {
         requestBackendlogin(formData)
             .then(response => {
                 saveAuthData(response.data);
-                const token = getAuthData().access_token;
-                console.log("Token gerado: " + token)
-
                 setHasError(false)
-                console.log('SUCESSO!! ', response);
+                setAuthContextData({
+                    authenticated: true,
+                    tokenData: getTokenData()
+                });
                 navigate('/admin')
             })
             .catch(error => {
