@@ -40,33 +40,61 @@
   padding-left: 40px;
   padding-right: 40px;
   min-height: 70px;
-  }
-  
-  .nav-logo-text {
-    color: #fff;
-  }
-  
-  .nav-logo-text:hover {
-    color: #fff;
-  } 
+}
+
+.nav-logo-text {
+  color: #fff;
+}
+
+.nav-logo-text:hover {
+  color: #fff;
+}
 
 .main-menu {
-    display: flex;
-    font-size: 18px;
-    width: 380px;
-    justify-content: space-between;
+  display: flex;
+  font-size: 18px;
+  width: 380px;
+  justify-content: space-between;
 
-    a {
-        font-style: normal;
-        color: rgba(255, 255, 255, 0.5);
-        text-transform: uppercase;
+  a {
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
 
-        &.active {
-            font-weight: bold;
-            color: #fff
-        }
-        &:hover {
-            color: #fff;
-        }
+    &.active {
+      font-weight: bold;
+      color: #fff
     }
-} 
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.nav-login-logout {
+  display: none;
+}
+
+.nav-username {
+  display: none;
+}
+
+@media (min-width: 768px){
+  .nav-login-logout {
+    display: unset;
+    color: #FFF;
+    margin-right: 15px;
+    margin-left: 40px;
+  }
+}
+
+@media (min-width: 992px){
+  .nav-login-logout {   
+    margin-right: 40px;    
+  }
+  .nav-username  {
+    display: unset;
+    margin-right: 20px;
+  }
+}
