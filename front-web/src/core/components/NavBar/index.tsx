@@ -1,9 +1,46 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './style.scss'
 import 'bootstrap/js/src/collapse.js'
+import { getTokenData, isAuthenticated, removeAuthData, TokenData } from '../../../util/requests';
+import history from '../../../util/history';
 
-export default function index() {
+type AuthData = {
+    authenticated: boolean,
+    tokenData?: TokenData
+}
+
+
+const Navabar = () => {
+
+    const [authData, setAuthData] = useState<AuthData>({ authenticated: false });
+
+    useEffect(() => {
+
+        if (isAuthenticated()) {
+            setAuthData({
+                authenticated: true,
+                tokenData: getTokenData()
+            });
+        }
+        else {
+            setAuthData({
+                authenticated: false,
+                tokenData: getTokenData()
+            });
+        }
+    }, [])
+
+    const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        removeAuthData();
+        setAuthData({
+            authenticated: false,
+            tokenData: getTokenData()
+        });
+        history.replace('/');
+    }
+
     return (
         <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
             <div className="container-fluid">
@@ -37,7 +74,24 @@ export default function index() {
                         <NavLink to="/admin" style={({ isActive }) => ({ color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.5)' })}>Admin</NavLink>
                     </li>
                 </ul>
+
             </div>
+            <div>
+                {
+                    authData.authenticated ? (
+                        <>
+                            <span>{authData.tokenData?.user_name}</span>
+                            <Link to="#logout" onClick={handleLogoutClick}>LOGOUT</Link>
+                        </>
+                    ) : (
+                        <Link to="/admin/auth">LOGIN</Link>
+                    )
+                }
+            </div>
+
         </nav>
     )
 }
+
+
+export default Navabar
