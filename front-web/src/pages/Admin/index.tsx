@@ -17,7 +17,7 @@ const Admin = () => {
 
           <Route path="products" element={<ProtectedRoute outlet={<h1>Product CRUD</h1>} />} />         
           <Route path="categories" element={<ProtectedRoute outlet={<h1>Category CRUD</h1>} />} />          
-          <Route path="users" element={<ProtectedRoute outlet={<Users />} />} />
+          <Route path="users" element={<ProtectedRoute outlet={<Users />} roles={['ROLE_ADMIN']} />} />
 
         </Routes>
       </div>

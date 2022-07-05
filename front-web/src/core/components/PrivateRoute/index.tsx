@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { Navigate, useLocation } from 'react-router-dom';
-import { isAuthenticated } from '../../../util/requests';
+import { hasAnyRoles, isAuthenticated, Role } from '../../../util/requests';
 
 // type Props = {
 //   component: React.ComponentType;
@@ -28,6 +28,7 @@ import { isAuthenticated } from '../../../util/requests';
 
 type ProtectedRouteProps = {
   outlet: JSX.Element;
+  roles?: Role[];
 };
 
 
@@ -35,15 +36,15 @@ type ProtectedRouteProps = {
 // const ProtectedRoute = ({ outlet }: ProtectedRouteProps) => {
 
 
-  // <Route
-  //   path={path}
-  //   element={({ location }) =>
-  //     isAuthenticated() ? outlet : <Navigate to={{
-  //       pathname: "/admin/auth/login",
-  //       state: {from: location} 
-  //     }} />
-  //   }
-  // />
+// <Route
+//   path={path}
+//   element={({ location }) =>
+//     isAuthenticated() ? outlet : <Navigate to={{
+//       pathname: "/admin/auth/login",
+//       state: {from: location} 
+//     }} />
+//   }
+// />
 
 
 
@@ -52,23 +53,37 @@ type ProtectedRouteProps = {
 //   } else {
 //     return <Navigate to={{
 //       pathname: "/admin/auth/login",    
-      
+
 //     }} replace={true} />;
 
 //   }
 // }
 
-const ProtectedRoute = ({ outlet }: ProtectedRouteProps) => {
-  const  auth  = isAuthenticated();
+const ProtectedRoute = ({ outlet, roles = []}: ProtectedRouteProps) => {
+  const auth = isAuthenticated();
   const location = useLocation();
 
   if (auth === undefined) {
     return null; // or loading spinner, etc...
   }
 
-  return auth
-    ? outlet 
-    : <Navigate to={"/admin/auth/login"} state={{ from: location }} replace />;
+  return !auth
+    ? (<Navigate to={"/admin/auth/login"} state={{ from: location }} replace />)
+    : !hasAnyRoles(roles) ? (
+      <Navigate to={"/admin/products"} replace />
+    ) : (
+      outlet
+    );
 };
+
+// if (auth === undefined) {
+//   return null; // or loading spinner, etc...
+// }
+
+// return !auth
+//   ? outlet 
+//   : <Navigate to={"/admin/auth/login"} state={{ from: location }} replace />;
+// };
+
 
 export default ProtectedRoute;
