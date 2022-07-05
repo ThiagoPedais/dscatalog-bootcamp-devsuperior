@@ -23,6 +23,6 @@ const Admin = () => {
       </div>
     </section>
   )
-}
+} 
 
 export default Admin;

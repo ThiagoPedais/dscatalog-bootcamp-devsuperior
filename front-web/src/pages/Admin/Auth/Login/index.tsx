@@ -1,21 +1,33 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ButtonIcon from '../../../../core/components/Button';
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import './style.scss';
-import { getAuthData, getTokenData, requestBackendlogin, saveAuthData } from '../../../../util/requests';
+import { getTokenData, requestBackendlogin, saveAuthData } from '../../../../util/requests';
 import { AuthContext } from '../../../../AuthContext';
 
+type FormData = {
+    username: string,
+    password: string,
+};
+
+type LocationProps = {
+    state: {
+      from: Location;
+    };
+  };
+
+
 const Login = () => {
+
+    const location = useLocation() as unknown as LocationProps;    
+    const from = location.state?.from?.pathname || '/admin';
+    
 
     const { setAuthContextData } = useContext(AuthContext);
 
     const [hasError, setHasError] = useState(false);
 
-    type FormData = {
-        username: string,
-        password: string,
-    };
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
     const navigate = useNavigate();
@@ -29,7 +41,7 @@ const Login = () => {
                     authenticated: true,
                     tokenData: getTokenData()
                 });
-                navigate('/admin')
+                navigate(from, {replace: true});
             })
             .catch(error => {
                 setHasError(true)
