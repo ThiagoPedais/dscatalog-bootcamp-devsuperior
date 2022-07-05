@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import { Navigate, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { isAuthenticated } from '../../../util/requests';
 
 // type Props = {

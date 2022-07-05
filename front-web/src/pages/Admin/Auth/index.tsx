@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import { ReactComponent as AuthImage } from "../../../core/assets/images/auth-image.svg";
 
 import './style.scss';
-import { Link } from "react-router-dom";
 import Login from "./Login";
 
 

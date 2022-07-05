@@ -20,7 +20,7 @@ type LocationProps = {
 
 const Login = () => {
 
-    const location = useLocation() as unknown as LocationProps;    
+    const location = useLocation() as LocationProps;    
     const from = location.state?.from?.pathname || '/admin';
     
 
