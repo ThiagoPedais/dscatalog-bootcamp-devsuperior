@@ -1,4 +1,4 @@
-.product-card {
+.product-crud-card {
     padding: 20px 20px 30px 20px;
     text-align: center;
     margin-bottom: 30px;
@@ -18,7 +18,7 @@
     letter-spacing: 0.015em;
 }
 
-.product-price-container {
+.product-crud-product-price-container {
     display: flex;
     margin-top: 25px;
 }
@@ -31,8 +31,12 @@
 
 }
 
-.card-top-container img {
+.product-crud-card-top-container img {
     width: 158px;
     height: 158px;
 }
 
+.product-crud-categories-container{
+    margin-top: 15px;
+    display: flex;
+}
