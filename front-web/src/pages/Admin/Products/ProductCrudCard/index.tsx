@@ -4,6 +4,7 @@ import { Product } from '../../../../types/product';
 // import { ReactComponent as ProductImage } from '../../../../core/assets/images/product.svg'
 import './style.scss';
 import Categorybadge from '../CategoryBadge';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
@@ -18,7 +19,7 @@ const ProductCrudCard = ({ product }: Props) => {
         <img src={product.imgUrl} alt={product.name} />
       </div>
       <div className="product-crud-product-description">
-        <div className="product-info">
+        <div >
 
           <div className="product-crud-product-price-container">
             <h6 className="product-name">
@@ -40,8 +41,14 @@ const ProductCrudCard = ({ product }: Props) => {
         </div>
       </div>
       <div className="product-crud-card-buttons-container">
-        <button className='btn btn-outline-danger product-crud-card-button product-crud-card-button-first'>EXCLUIR</button>
-        <button className='btn btn-outline-secondary product-crud-card-button'>EDITAR</button>
+
+        <Link to="" >
+          <button className='btn btn-outline-danger product-crud-card-button product-crud-card-button-first'>EXCLUIR</button>
+        </Link>
+        <Link to={`/admin/products/${product.id}`}>
+          <button className='btn btn-outline-secondary product-crud-card-button'>EDITAR</button>
+        </Link>
+
       </div>
 
     </div>

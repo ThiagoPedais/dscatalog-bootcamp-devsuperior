@@ -47,22 +47,22 @@ export const requestBackend = (config: AxiosRequestConfig) => {
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
-    console.log('Interceptor antes da req');
+    // console.log('Interceptor antes da req');
     return config;
 }, function (error) {
-    console.log('Interceptor error na req');
+    // console.log('Interceptor error na req');
     return Promise.reject(error);
 });
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-    console.log('Interceptor resposta com sucesso');
+    // console.log('Interceptor resposta com sucesso');
     return response;
 }, function (error) {
     if (error.response.status === 401) {
         history.push('/admin/auth')
     }
-    console.log('Interceptor resposta com error');
+    // console.log('Interceptor resposta com error');
 
     return Promise.reject(error);
 });

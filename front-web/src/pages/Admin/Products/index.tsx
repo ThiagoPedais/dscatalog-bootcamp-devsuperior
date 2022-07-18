@@ -8,7 +8,7 @@ const Products = () =>{
 
     <Routes>
         <Route path="/" element={<List />} />
-        <Route path=":productsId" element={<Form />} />
+        <Route path=":productId" element={<Form />} />
     </Routes>
 
   )

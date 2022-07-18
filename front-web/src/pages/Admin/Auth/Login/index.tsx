@@ -8,7 +8,7 @@ import { AuthContext } from '../../../../AuthContext';
 import { saveAuthData } from '../../../../util/storage';
 import { getTokenData } from '../../../../util/auth';
 
-type FormData = {
+type CredentialsDTO = {
     username: string,
     password: string,
 };
@@ -30,11 +30,11 @@ const Login = () => {
 
     const [hasError, setHasError] = useState(false);
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const { register, handleSubmit, formState: { errors } } = useForm<CredentialsDTO>();
 
     const navigate = useNavigate();
 
-    const onSubmit = (formData: FormData) => {
+    const onSubmit = (formData: CredentialsDTO) => {
         requestBackendlogin(formData)
             .then(response => {
                 saveAuthData(response.data);

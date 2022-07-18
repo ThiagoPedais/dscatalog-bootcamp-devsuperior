@@ -21,7 +21,7 @@ export default function List() {
             url: `/products`,
             params: {
                 page: 0,
-                size: 50
+                size: 60,
             }
         }
 
