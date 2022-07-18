@@ -24,7 +24,7 @@ export default function List() {
 
 
     return (
-        <>
+        <div className="product-crud-container">
             <div className="product-crud-bar-container">
                 <Link to="/admin/products/create">
                     <button className="btn btn-primary text-white btn-crud-add">ADICIONAR</button>
@@ -52,6 +52,6 @@ export default function List() {
 
             </div>
 
-        </>
+        </div>
     )
 }
