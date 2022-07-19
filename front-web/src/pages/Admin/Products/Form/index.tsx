@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
+import ReactSelect from 'react-select';
 import { Product } from '../../../../types/product';
 import { requestBackend } from '../../../../util/requests';
 import './styles.scss';
@@ -13,6 +14,13 @@ type UrlParams = {
 
 export default function Form() {
 
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+
+
   const { productId } = useParams<UrlParams>();
   const isEditing = productId !== 'create';
 
@@ -23,7 +31,7 @@ export default function Form() {
 
   useEffect(() => {
     if (isEditing) {
-      requestBackend({ url: `/products/${productId}` }) 
+      requestBackend({ url: `/products/${productId}` })
         .then(response => {
 
           const product = response.data as Product;
@@ -31,7 +39,7 @@ export default function Form() {
           setValue('price', product.price);
           setValue('description', product.description)
           setValue('imgUrl', product.imgUrl)
-          setValue('categories', product.categories)        
+          setValue('categories', product.categories)
 
         })
     }
@@ -41,8 +49,8 @@ export default function Form() {
 
     const data = {
       ...formData,
-      imgUrl: isEditing ?  formData.imgUrl : "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg",
-      categories: isEditing ?  formData.categories : [{ id: 1, name: "" }]
+      imgUrl: isEditing ? formData.imgUrl : "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg",
+      categories: isEditing ? formData.categories : [{ id: 1, name: "" }]
     }
 
 
@@ -88,7 +96,18 @@ export default function Form() {
                 />
                 <div className="invalid-feedback d-block">{errors.name?.message}</div>
               </div>
-              
+
+
+              <div className="margin-bottom-30">
+                <ReactSelect
+                  options={options}
+                  isMulti
+                  classNamePrefix = "product-crud-select"
+                />
+              </div>
+
+
+
               <div className="margin-bottom-30">
                 <input
                   {...register("price", {
