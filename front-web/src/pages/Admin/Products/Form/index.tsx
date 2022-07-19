@@ -88,6 +88,7 @@ export default function Form() {
                 />
                 <div className="invalid-feedback d-block">{errors.name?.message}</div>
               </div>
+              
               <div className="margin-bottom-30">
                 <input
                   {...register("price", {
@@ -113,7 +114,7 @@ export default function Form() {
                   placeholder="Descrição"
                   name="description"
                 />
-                <div className="invalid-feedback d-block">{errors.price?.message}</div>
+                <div className="invalid-feedback d-block">{errors.description?.message}</div>
               </div>
             </div>
 
