@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
+import CurrencyInput from 'react-currency-input-field';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
@@ -48,12 +49,14 @@ export default function Form() {
     }
   }, [isEditing, productId, setValue])
 
-  const onSubmit = (formData: Product) => {   
+  const onSubmit = (formData: Product) => {
+
+    const data = { ...formData, price: String(formData.price).replace(',', '.') }
 
     const config: AxiosRequestConfig = {
       method: isEditing ? 'PUT' : 'POST',
       url: isEditing ? `/products/${productId}` : '/products',
-      data: formData,
+      data,
       withCredentials: true,
     };
 
@@ -121,17 +124,25 @@ export default function Form() {
 
 
               <div className="margin-bottom-30">
-                <input
-                  {...register("price", {
-                    required: 'Campo obrigatório'
-                  })}
-                  type="text"
-                  className={`form-control base-input ${errors.price ? 'is-invalid' : ''}`}
-                  placeholder="Preço"
+                <Controller
                   name="price"
+                  rules={{ required: 'Campo obrigatório' }}
+                  control={control}
+                  render={({ field }) => (
+                    <CurrencyInput
+                      placeholder="Preço"
+                      className={`form-control base-input ${errors.price ? 'is-invalid' : ''}`}
+                      disableGroupSeparators={true}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    />
+                  )}
+
+
                 />
-                <div className="invalid-feedback d-block">{errors.price?.message}</div>
-              </div>
+                <div className="invalid-feedback d-block">{errors.price?.message}</div>              </div>
+
+
 
 
               <div className="margin-bottom-30">
@@ -139,10 +150,10 @@ export default function Form() {
                   {...register("imgUrl", {
                     required: 'Campo obrigatório',
                     pattern: {
-                        value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
-                        message: 'Deve ser uma URL válida'
+                      value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
+                      message: 'Deve ser uma URL válida'
                     }
-                })}
+                  })}
                   type="text"
                   className={`form-control base-input ${errors.imgUrl ? 'is-invalid' : ''}`}
                   placeholder="URL da image do produto"
