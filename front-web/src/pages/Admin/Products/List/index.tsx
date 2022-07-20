@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import Pagination from "../../../../core/components/Pagination";
+import ProductFilter from "../../../../core/components/ProductFilter";
 import { Product } from "../../../../types/product";
 import { SpringPage } from "../../../../types/vendor/spring";
 import { requestBackend } from "../../../../util/requests";
@@ -56,8 +57,8 @@ export default function List() {
                 <Link to="/admin/products/create">
                     <button className="btn btn-primary text-white btn-crud-add">ADICIONAR</button>
                 </Link>
-                <div className="card-base product-filter-container">Search bar</div>
             </div>
+            <ProductFilter />
 
             <div className="row">
 
