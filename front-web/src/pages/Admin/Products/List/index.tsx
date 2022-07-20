@@ -17,16 +17,16 @@ export default function List() {
 
 
     useEffect(() => {
-        getProducts();
+        getProducts(0);
     }, [])
 
-    const getProducts = () => {
+    const getProducts = (pageNumber: number) => {
         const config: AxiosRequestConfig = {
             method: 'GET',
             url: `/products`,
             params: {
-                page: 0,
-                size: 60,
+                page: pageNumber,
+                size: 5,
             }
         }
 
@@ -56,7 +56,7 @@ export default function List() {
                         <div key={product.id} className="col-sm-6 col-md-12">
                             <ProductCrudCard
                                 product={product}
-                                onDelete={() => getProducts()}
+                                onDelete={() => getProducts(page.number)}
                             />
                         </div>
                     ))
@@ -64,7 +64,11 @@ export default function List() {
 
             </div>
 
-            <Pagination />
+            <Pagination
+                pageCount={(page) ? page.totalPages : 0}
+                range={3}
+                onChange={getProducts}
+            />
 
         </div>
     )
