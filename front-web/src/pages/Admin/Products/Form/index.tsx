@@ -7,6 +7,9 @@ import ReactSelect from 'react-select';
 import { Category } from '../../../../types/category';
 import { Product } from '../../../../types/product';
 import { requestBackend } from '../../../../util/requests';
+import { toast } from 'react-toastify';
+
+
 import './styles.scss';
 
 
@@ -62,8 +65,11 @@ export default function Form() {
 
     requestBackend(config)
       .then((response) => {
-        console.log(response.data)
+        toast.info("Produto cadastrado com sucesso ;)")
         navigate("/admin/products")
+      })
+      .catch(() => {
+        toast.error("Erro ao cadastrar o produto :(")
       })
 
 
