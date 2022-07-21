@@ -10,14 +10,14 @@ import './styles.scss'
 
 type ProductFilterData = {
     name: string,
-    category: Category
+    category: Category | null
 }
 
 
 
 export default function ProductFilter() {
 
-    const { register, handleSubmit, control } = useForm<ProductFilterData>();
+    const { register, handleSubmit, setValue, getValues, control } = useForm<ProductFilterData>();
     const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
 
@@ -25,6 +25,22 @@ export default function ProductFilter() {
 
         console.log("ENVIOU ", formData);
     };
+
+    const handleFormClear = () => {
+        setValue('name', '')
+        setValue('category', null)
+    }
+
+    const handleChangeCategory = (value : Category) => {
+        setValue('category', value);
+
+        const obj : ProductFilterData = {
+            name: getValues('name'),
+            category: getValues('category')
+        }
+        console.log("ENVIOU ", obj);
+
+    }
 
     useEffect(() => {
         requestBackend({ url: '/categories' })
@@ -62,6 +78,9 @@ export default function ProductFilter() {
                                     isClearable
                                     placeholder="Categoria"
                                     classNamePrefix="product-filter-select"
+                                  
+                                    onChange={value => handleChangeCategory(value as Category)}
+
                                     getOptionLabel={(category: Category) => category.name}
                                     getOptionValue={(category: Category) => String(category.id)}
                                 />
@@ -69,7 +88,7 @@ export default function ProductFilter() {
 
                         />
                     </div>
-                    <button className="btn btn-outline-secondary btn-prodct-filter-clear">LIMPAR <span className='btn-product-filter-word'>FILTRO</span></button>
+                    <button onClick={handleFormClear} className="btn btn-outline-secondary btn-prodct-filter-clear">LIMPAR <span className='btn-product-filter-word'>FILTRO</span></button>
                 </div>
 
             </form>
