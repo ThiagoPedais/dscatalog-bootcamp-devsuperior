@@ -8,22 +8,25 @@ import { requestBackend } from '../../../util/requests';
 
 import './styles.scss'
 
-type ProductFilterData = {
+export type ProductFilterData = {
     name: string,
     category: Category | null
 }
 
+type Props = {
+    onSubmitFilter : (data : ProductFilterData) => void;
+}
 
 
-export default function ProductFilter() {
+
+export default function ProductFilter( {onSubmitFilter} : Props) {
 
     const { register, handleSubmit, setValue, getValues, control } = useForm<ProductFilterData>();
     const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
 
     const onSubmit = (formData: ProductFilterData) => {
-
-        console.log("ENVIOU ", formData);
+        onSubmitFilter(formData);
     };
 
     const handleFormClear = () => {
@@ -38,7 +41,7 @@ export default function ProductFilter() {
             name: getValues('name'),
             category: getValues('category')
         }
-        console.log("ENVIOU ", obj);
+        onSubmitFilter(obj);
 
     }
 
