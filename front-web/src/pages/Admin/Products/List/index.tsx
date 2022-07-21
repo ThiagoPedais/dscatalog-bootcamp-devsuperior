@@ -57,8 +57,9 @@ export default function List() {
                 <Link to="/admin/products/create">
                     <button className="btn btn-primary text-white btn-crud-add">ADICIONAR</button>
                 </Link>
+                <ProductFilter />
             </div>
-            <ProductFilter />
+            
 
             <div className="row">
 
